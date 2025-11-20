@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        input:focus,
+        select:focus,
+        textarea:focus,
+        button:focus,
+        [contenteditable="true"]:focus {
+            outline: none;
+            border: rgb(0, 114, 149) solid 7px;
+        }
+        body {
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgb(0, 162, 216);
+            color: white;
+            font-size: 100px;
+        }
+        input{
+            width: 25%;
+            background-color: rgb(0, 191, 255);
+            border-radius: 25px;
+            color:rgb(255, 255, 255);
+            border: rgb(0, 114, 149) solid 3px;
+            font-size: 100px;
+            cursor: help;
+        }
+        select, button, span {
+            background-color: rgb(0, 191, 255);
+            border-radius: 25px;
+            color:rgb(255, 255, 255);
+            border: rgb(0, 114, 149) solid 3px;
+            font-size: 100px;
+        }
+        option {
+            font-size: 20px;
+        }
+        #display{
+            font-size: 50px;
+        }
+        input:focus {
+            cursor: text;
+        }
+        .historyfunctions button {
+            font-size: 30px;
+            margin: 10px;
+        }
+        p#history {
+            font-size: 30px;
+            margin: 0px;
+        }
+        h5 {
+            font-size: 40px;
+            margin: 0px;
+            margin-top: 40px;
+        }
+        button:hover {
+            background-color: rgb(0, 162, 216);
+            border: rgb(0, 114, 149) solid 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>JS Calculator</h1>
+<input type="text" id="number1" title="This is the first number of the equation."></input>
+<select name="type" id="type">
+    <option value="plus">+</option>
+    <option value="minus">-</option>
+    <option value="multiply">*</option>
+    <option value="divide">/</option>
+</select>
+<input type="text" id="number2" title="This is the second number of the equation."></input>
+<button onclick="go()">Submit</button>
+<br>
+<span id="display">Choose your equation then click submit.</span>
+<!--src="equation.js"-->
+<script src="equation.js">
+</script>
+<h5>History</h5>
+<p id="history"></p>
+<div class="historyfunctions">
+<button onclick="clearHistory()">Clear History</button>
+<button onclick="historyLengthSet()" id="hisLng">Set history to 5</button>
+</div>
+</body>
+</html>
