@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        inputButtonPress:focus,
+        select:focus,
+        textarea:focus,
+        button:focus,
+        [contenteditable="true"]:focus {
+            outline: none;
+        }
+        body {
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgb(0, 162, 216);
+            color: white;
+            font-size: 100px;
+        }
+        inputButtonPress{
+            width: 25%;
+            background-color: rgb(0, 191, 255);
+            border-radius: 25px;
+            color:rgb(255, 255, 255);
+            border: rgb(0, 114, 149) solid 3px;
+            font-size: 100px;
+            cursor: help;
+        }
+        select, button, span {
+            background-color: rgb(0, 191, 255);
+            border-radius: 25px;
+            color:rgb(255, 255, 255);
+            border: rgb(0, 114, 149) solid 3px;
+            font-size: 100px;
+        }
+        option {
+            font-size: 20px;
+        }
+        inputButtonPress:focus {
+            cursor: text;
+        }
+        .historyfunctions button {
+            font-size: 30px;
+            margin: 10px;
+        }
+        p#history {
+            font-size: 30px;
+            margin: 0px;
+        }
+        h5 {
+            font-size: 40px;
+            margin: 0px;
+            margin-top: 40px;
+        }
+        button:hover {
+            background-color: rgb(0, 162, 216);
+            cursor: pointer;
+        }
+        button:active {
+            background-color: rgb(0, 114, 149);
+        }
+        button {
+            font-size: 60px;
+            width: 20%;
+            margin: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>JS Calculator</h1>
+<span width="100%" style="background-color: rgb(0, 111, 148);" id="display">1+1=2</span>
+<br>
+<button class="+-/*" onclick="middle('plus')">+</button>
+<button class="+-/*" onclick="middle('minus')">-</button>
+<button class="+-/*" onclick="middle('multiply')">X</button>
+<button class="+-/*" onclick="middle('divide')">/</button>
+<br>
+<button onclick="inputButtonPress('1')">1</button>
+<button onclick="inputButtonPress('2')">2</button>
+<button onclick="inputButtonPress('3')">3</button>
+<br>
+<button onclick="inputButtonPress('4')">4</button>
+<button onclick="inputButtonPress('5')">5</button>
+<button onclick="inputButtonPress('6')">6</button>
+<br>
+<button onclick="inputButtonPress('7')">7</button>
+<button onclick="inputButtonPress('8')">8</button>
+<button onclick="inputButtonPress('9')">9</button>
+<br>
+<button class="." onclick="inputButtonPress('.')">.</button>
+<button onclick="inputButtonPress('0')">0</button>
+<button class="clear" onclick="clearall();">C</button>
+<br>
+<button onclick="buttonGo()">Submit</button>
+
+<script>
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            buttonGo();
+        }
+    });
+        document.addEventListener("keydown", function(event) {
+        if (event.key === "c") {
+            clearall();
+        }
+    });
+</script>
+<br>
+<!--src="equation.js"-->
+<script src="equation.js">
+</script>
+<h5>History</h5>
+<p id="history"></p>
+<div class="historyfunctions">
+<button onclick="clearHistory()">Clear History</button>
+<button onclick="historyLengthSet()" id="hisLng">Set history to 5</button>
+</div>
+</body>
+</html>
