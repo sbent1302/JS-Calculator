@@ -1,6 +1,14 @@
 // equation.js
 const history = [];
 var historyLength = 10;
+var equation = '';
+var fstNo = '';
+var factor = '';
+var going = false;
+
+// Initialize
+clearall();
+document.getElementById("display").innerText = "⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 
 // Main calculator functions
 function go(){
@@ -12,26 +20,63 @@ function go(){
     input(num1,type,num2);
 }
 
-function input(number1, type, number2){
+
+function inputButtonPress(button){
+    equation += button;
+    fstNo = equation;
+    console.log("Equation = " + equation);
+    console.log("Button = " + button);
+    document.getElementById("display").innerHTML = document.getElementById("display").innerText + equation;
+}
+
+function middle(factor) {
+    fstNo = equation;
+    factor = factor;
+    equation = '';
+    console.log("fstNo = " + fstNo);
+    console.log("Factor = " + factor);
+    document.getElementById("display").innerHTML = fstNo + convertOperator(factor);
+}
+
+function clearall() {
+    equation = '';
+    factor = '';
+    fstNo = '';
+}
+
+
+function buttonGo() {
+    going = true;
+    input(fstNo, factor, equation, "button");
+    clearall();
+}
+
+function input(number1, type, number2, outputType){
     switch (type) {
         case "plus":
-            var output = number1 + number2
+            var output = Number(number1) + Number(number2)
             break;
         case "minus":
-            var output = number1 - number2
+            var output = Number(number1) - Number(number2)
             break;
         case "multiply":
-            var output = number1 * number2
+            var output = Number(number1) * Number(number2)
             break;
         case "divide":
-            var output = number1 / number2
+            var output = Number(number1) / Number(number2)
             break;
         default:
             var output = "Please select a type."
             break;
     }
-
-    document.getElementById("display").innerHTML = "The answer is: " + output;
+    if (outputType == "button") {
+      console.log(output);
+      var buttony = Number(number1) + convertOperator(factor) + Number(number2) + "=" + output;
+      document.getElementById("display").innerHTML = buttony;
+      going = false;
+    } else {
+      document.getElementById("display").innerHTML = "The answer is: " + output;  
+    }
     
     //Store in history array. Only the last {historyLength} (5 or 10) equations are stored.
     history.push({number1: number1, type: type, number2: number2, output: output});
@@ -87,29 +132,4 @@ function historyLengthSet(){
 function clearHistory(){
     history.length = 0;
     document.getElementById("history").innerHTML = "";
-}
-
-
-
-// Cookie functions
-function setCookie(cname, cvalue, exdays) {
-  const d = new Date();
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  let expires = "expires="+d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-  let name = cname + "=";
-  let ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
 }
