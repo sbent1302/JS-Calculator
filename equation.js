@@ -8,7 +8,7 @@ var going = false;
 
 // Initialize
 clearall();
-document.getElementById("display").innerText = "⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+document.getElementById("display").innerText = "⠀⠀⠀⠀⠀⠀⠀⠀⠀";
 
 // Main calculator functions
 function go(){
@@ -23,15 +23,18 @@ function go(){
 
 function inputButtonPress(button){
     equation += button;
-    fstNo = equation;
+    if(factor == ""){
+        fstNo = equation;
+    }
     console.log("Equation = " + equation);
     console.log("Button = " + button);
-    document.getElementById("display").innerHTML = document.getElementById("display").innerText + equation;
+    //document.getElementById("display").innerHTML = document.getElementById("display").innerText + equation;
+    document.getElementById("display").innerHTML = document.getElementById("display").innerText + button;
 }
 
-function middle(factor) {
+function middle(factor2) {
     fstNo = equation;
-    factor = factor;
+    factor = factor2;
     equation = '';
     console.log("fstNo = " + fstNo);
     console.log("Factor = " + factor);
@@ -42,6 +45,7 @@ function clearall() {
     equation = '';
     factor = '';
     fstNo = '';
+    //document.getElementById("display").innerText = "⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 }
 
 
